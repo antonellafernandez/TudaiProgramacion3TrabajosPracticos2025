@@ -1,3 +1,5 @@
+package TP1_EstructurasDeDatos;
+
 public class Node<T> {
 
     private T info;

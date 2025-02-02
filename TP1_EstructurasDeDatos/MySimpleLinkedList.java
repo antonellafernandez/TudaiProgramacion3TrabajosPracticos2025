@@ -1,3 +1,5 @@
+package TP1_EstructurasDeDatos;
+
 /* • Ejercicio 1
 
 Implemente los métodos indicados del esqueleto de Lista desarrollado en Teoría (
@@ -26,7 +28,10 @@ A partir de la clase Lista implementada en el ejercicio 1, implemente el patrón
 iterator-iterable, para que la lista sea iterable. ¿Existe alguna ventaja computacional a la hora
 de recorrer la lista de principio a fin si se cuenta con un iterador? */
 
-public class MySimpleLinkedList<T> implements Iterable<T> {
+import java.util.Iterator;
+import java.util.Objects;
+
+public class MySimpleLinkedList<T extends Comparable<T>> implements Iterable<T> {
 
     private Node<T> first;
     private int size; // Para mantener registro del tamaño en O(1)
@@ -40,6 +45,28 @@ public class MySimpleLinkedList<T> implements Iterable<T> {
         Node<T> tmp = new Node<T>(info, this.first);
         this.first = tmp;
         this.size++; // Incrementar tamaño
+    }
+
+    public void insertOrdered(T info) {
+        Node<T> nuevo = new Node<T>(info, null);
+        if (this.first == null || this.first.getInfo().compareTo(info) >= 0) {
+            // Si la lista está vacía o el nuevo elemento es menor que el primero
+            nuevo.setNext(this.first);
+            this.first = nuevo;
+        } else {
+            Node<T> actual = this.first;
+            Node<T> anterior = null;
+
+            while (actual != null && actual.getInfo().compareTo(info) < 0) {
+                anterior = actual;
+                actual = actual.getNext();
+            }
+
+            nuevo.setNext(actual);
+            anterior.setNext(nuevo);
+        }
+
+        this.size++; // Incrementar tamaño de la lista
     }
 
     public T extractFront() {
@@ -58,11 +85,24 @@ public class MySimpleLinkedList<T> implements Iterable<T> {
     }
 
     public T get(int index) {
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+
+        Node<T> actual = this.first;
+
+        for (int i = 0; i < index; i++) {
+            actual = actual.getNext();
+        }
+
+        return actual.getInfo();
+
+        /*
         if (index == 0 && this.first != null) {
             return this.first.getInfo(); // Acceder al primer elemento en O(1)
         }
 
-        return null; // Solo se puede acceder en O(1) al primer elemento
+        return null; // Solo se puede acceder en O(1) al primer elemento */
     }
 
     public int size() {
@@ -75,9 +115,10 @@ public class MySimpleLinkedList<T> implements Iterable<T> {
         Node<T> tmp = this.first;
 
         while (tmp != null) {
-            if (tmp.getInfo().equals(info)) { // Comparar usando equals()
+            if (Objects.equals(tmp.getInfo(), info)) { // Manejo seguro de null
                 return index;
             }
+
             tmp = tmp.getNext(); // Avanzar al siguiente nodo
             index++;
         }
@@ -87,10 +128,17 @@ public class MySimpleLinkedList<T> implements Iterable<T> {
 
     @Override
     public String toString() {
-        return "MySimpleLinkedList{" +
-                "first=" + first +
-                ", size=" + size +
-                '}';
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> actual = this.first;
+        while (actual != null) {
+            sb.append(actual.getInfo());
+            if (actual.getNext() != null) {
+                sb.append(" -> ");
+            }
+            actual = actual.getNext();
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     // Implementar el iterador interno

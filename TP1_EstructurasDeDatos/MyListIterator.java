@@ -1,4 +1,9 @@
-private class MyListIterator<T> implements Iterator<T> {
+package TP1_EstructurasDeDatos;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class MyListIterator<T> implements Iterator<T> {
 
     private Node<T> cursor;
 
@@ -13,6 +18,10 @@ private class MyListIterator<T> implements Iterator<T> {
 
     @Override
     public T next() {
+        if (cursor == null) {
+            throw new NoSuchElementException();
+        }
+
         T info = this.cursor.getInfo();
         this.cursor = this.cursor.getNext();
         return info;
