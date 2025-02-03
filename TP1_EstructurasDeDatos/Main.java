@@ -1,5 +1,7 @@
 package TP1_EstructurasDeDatos;
 
+import java.util.Iterator;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -28,57 +30,65 @@ public class Main {
         System.out.println("Lista 2 Ordenada: " + lista2Ordenada);
 
         // Obtener elementos comunes de las listas desordenadas
-        MySimpleLinkedList<Integer> comunesDesordenados = obtenerElementosComunesDesordenados(lista1Desordenada, lista2Desordenada);
+        MySimpleLinkedList<Integer> comunesDesordenados = getElementosComunesListasDesordenadas(lista1Desordenada, lista2Desordenada);
         System.out.println("Elementos Comunes (Desordenadas): " + comunesDesordenados);
 
         // Obtener elementos comunes de las listas ordenadas
-        MySimpleLinkedList<Integer> comunesOrdenados = obtenerElementosComunesOrdenados(lista1Ordenada, lista2Ordenada);
+        MySimpleLinkedList<Integer> comunesOrdenados = getElementosComunesListasOrdenadas(lista1Ordenada, lista2Ordenada);
         System.out.println("Elementos Comunes (Ordenadas): " + comunesOrdenados);
     }
 
+    // Complejidad O(n*m)
     // a) Las listas están desordenadas y la lista resultante debe quedar ordenada.
-    public static MySimpleLinkedList<Integer> obtenerElementosComunesDesordenados(MySimpleLinkedList<Integer> lista1,
-                                                                                  MySimpleLinkedList<Integer> lista2) {
+    public static MySimpleLinkedList<Integer> getElementosComunesListasDesordenadas(MySimpleLinkedList<Integer> lista1,
+                                                                               MySimpleLinkedList<Integer> lista2) {
 
-        MySimpleLinkedList<Integer> resultado = new MySimpleLinkedList<>();
+        MySimpleLinkedList<Integer> resultado = new MySimpleLinkedList<Integer>();
 
-        Node<Integer> node1 = lista1.get(0);
-        while (node1 != null) {
-            Node<Integer> node2 = lista2.first;
-            while (node2 != null) {
-                if (node1.getInfo().equals(node2.getInfo())) {
-                    resultado.insertOrdered(node1.getInfo());  // Insertar el común en orden
-                    break;  // Salimos del segundo ciclo cuando encontramos el primer común
+        Iterator<Integer> iter1 = lista1.iterator();
+
+        while (iter1.hasNext()) {
+            Integer info1 = iter1.next();
+            Iterator<Integer> iter2 = lista2.iterator();
+
+            while (iter2.hasNext()) {
+                Integer info2 = iter2.next();
+                if (info1.equals(info2)) {
+                    resultado.insertOrdered(info1);
+                    break;
                 }
-                node2 = node2.getNext();
             }
-            node1 = node1.getNext();
         }
 
         return resultado;
     }
 
+    // Recorrer ambas listas en paralelo, logrando una complejidad O(n + m)
     // b) Las listas están ordenadas y la lista resultante debe mantenerse ordenada.
-    public static MySimpleLinkedList<Integer> obtenerElementosComunesOrdenados(MySimpleLinkedList<Integer> lista1,
-                                                                               MySimpleLinkedList<Integer> lista2) {
+    public static MySimpleLinkedList<Integer> getElementosComunesListasOrdenadas(MySimpleLinkedList<Integer> lista1,
+                                                                                    MySimpleLinkedList<Integer> lista2) {
 
-        MySimpleLinkedList<Integer> resultado = new MySimpleLinkedList<>();
-        Node<Integer> node1 = lista1.first;
-        Node<Integer> node2 = lista2.first;
+        MySimpleLinkedList<Integer> resultado = new MySimpleLinkedList<Integer>();
 
-        // Usamos un enfoque de dos punteros para recorrer ambas listas
-        while (node1 != null && node2 != null) {
-            int valor1 = node1.getInfo();
-            int valor2 = node2.getInfo();
+        Iterator<Integer> iter1 = lista1.iterator();
+        Iterator<Integer> iter2 = lista2.iterator();
 
-            if (valor1 == valor2) {
-                resultado.insertOrdered(valor1);  // Insertar el común en orden
-                node1 = node1.getNext();
-                node2 = node2.getNext();
-            } else if (valor1 < valor2) {
-                node1 = node1.getNext();
+        if (!iter1.hasNext() || !iter2.hasNext()) {
+            return resultado; // Si alguna lista está vacía, el resultado también lo estará.
+        }
+
+        Integer info1 = iter1.next();
+        Integer info2 = iter2.next();
+
+        while (info1 != null && info2 != null) {
+            if (info1.equals(info2)) {
+                resultado.insertOrdered(info1); // Insertamos el elemento en orden
+                info1 = iter1.hasNext() ? iter1.next() : null;
+                info2 = iter2.hasNext() ? iter2.next() : null;
+            } else if (info1 < info2) {
+                info1 = iter1.hasNext() ? iter1.next() : null;
             } else {
-                node2 = node2.getNext();
+                info2 = iter2.hasNext() ? iter2.next() : null;
             }
         }
 
@@ -90,7 +100,7 @@ public class Main {
         Integer info;
 
         for (int i = 0; i < size; i++) {
-            info = (int) Math.floor(Math.random() * 100);
+            info = (int) Math.floor(Math.random() * 20);
             list.insertFront(info);
         }
     }
@@ -100,7 +110,7 @@ public class Main {
         Integer info;
 
         for (int i = 0; i < size; i++) {
-            info = (int) Math.floor(Math.random() * 100);
+            info = (int) Math.floor(Math.random() * 20);
             list.insertOrdered(info);
         }
     }
