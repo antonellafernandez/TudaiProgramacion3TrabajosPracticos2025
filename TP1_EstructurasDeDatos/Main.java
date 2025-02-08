@@ -9,8 +9,15 @@ public class Main {
 
         Escriba un procedimiento que dadas dos listas construya otra con los elementos comunes,
         suponiendo que: a) Las listas están desordenadas y la lista resultante debe quedar ordenada. b)
-        Las listas están ordenadas y la lista resultante debe mantenerse ordenada. */
+        Las listas están ordenadas y la lista resultante debe mantenerse ordenada.
 
+        • Ejercicio 6
+
+        Escriba una función que dadas dos listas construya otra con los elementos que están en la
+        primera pero no en la segunda. */
+
+
+        // Ejercicio 5
         // Crear dos listas desordenadas y ordenadas
         MySimpleLinkedList<Integer> lista1Desordenada = new MySimpleLinkedList<>();
         MySimpleLinkedList<Integer> lista2Desordenada = new MySimpleLinkedList<>();
@@ -36,6 +43,11 @@ public class Main {
         // Obtener elementos comunes de las listas ordenadas
         MySimpleLinkedList<Integer> comunesOrdenados = getElementosComunesListasOrdenadas(lista1Ordenada, lista2Ordenada);
         System.out.println("Elementos Comunes (Ordenadas): " + comunesOrdenados);
+
+        // Ejercicio 6
+        // Obtener elementos no comunes de las listas desordenadas
+        MySimpleLinkedList<Integer> noComunesDesordenados = getElementosNoComunesListasDesordenadas(lista1Desordenada, lista2Desordenada);
+        System.out.println("Elementos No Comunes (Desordenadas): " + noComunesDesordenados);
     }
 
     // Complejidad O(n*m)
@@ -89,6 +101,39 @@ public class Main {
                 info1 = iter1.hasNext() ? iter1.next() : null;
             } else {
                 info2 = iter2.hasNext() ? iter2.next() : null;
+            }
+        }
+
+        return resultado;
+    }
+
+    // Complejidad O(n²) siendo n la cantidad de elementos de cada lista,
+    // siempre y cuando ambas tengan la misma cantidad de elementos
+    // Obtener elementos que están en la primera lista pero no en la segunda.
+    public static MySimpleLinkedList<Integer> getElementosNoComunesListasDesordenadas(MySimpleLinkedList<Integer> lista1,
+                                                                                    MySimpleLinkedList<Integer> lista2) {
+
+        MySimpleLinkedList<Integer> resultado = new MySimpleLinkedList<Integer>();
+
+        Iterator<Integer> iter1 = lista1.iterator();
+
+        while (iter1.hasNext()) {
+            Integer info1 = iter1.next();
+            Iterator<Integer> iter2 = lista2.iterator();
+            boolean noComun = true;
+
+            while (iter2.hasNext()) {
+                Integer info2 = iter2.next();
+
+                if (info1.equals(info2)) {
+                    noComun = false;
+                    break;
+                }
+            }
+
+            // Agregar si es elemento no comun y ya se recorrió toda la lista 2
+            if (noComun) {
+                resultado.insertOrdered(info1);
             }
         }
 
