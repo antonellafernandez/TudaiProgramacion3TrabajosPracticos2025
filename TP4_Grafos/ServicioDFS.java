@@ -7,9 +7,9 @@ Implemente los recorridos Depth-First-Search y Breadth-First-Search. */
 
 public class ServicioDFS<T, G extends Grafo<T>> {
     private G grafo;
-    private static final int BLANCO = 0;
-    private static final int AMARILLO = 1;
-    private static final int NEGRO = 2;
+    private static final int BLANCO = 0; //No visitado
+    private static final int AMARILLO = 1; // Visitado, pero con vecinos aún sin explorar (en proceso)
+    private static final int NEGRO = 2; // Visitado completamente (terminado)
     private final HashMap<Integer, Integer> distancias = new HashMap<>();
     private int tiempo;
 
@@ -17,11 +17,13 @@ public class ServicioDFS<T, G extends Grafo<T>> {
         this.grafo = grafo;
     }
 
-    // Complejidad Computacional O(|V| + |A|) Con Listas de Adyacencia
+    // Complejidad Computacional O(|V| + |A|) con Listas de Adyacencia
+    // |V| representa la cantidad de vértices y |A| la cantidad de aristas en el grafo.
     public void DFS() {
         HashMap<Integer, Integer> color = new HashMap<Integer, Integer>();
         Iterator<Integer> verticesIterator = grafo.obtenerVertices();
 
+        // Inicializar todos los vértices como no visitados
         while (verticesIterator.hasNext()) {
             color.put(verticesIterator.next(), BLANCO);
         }
@@ -29,6 +31,7 @@ public class ServicioDFS<T, G extends Grafo<T>> {
         tiempo = 0;
         verticesIterator = grafo.obtenerVertices();
 
+        // Iniciar DFS en cada vértice que aún no haya sido visitado
         while (verticesIterator.hasNext()) {
             Integer vertice = verticesIterator.next();
             if (color.get(vertice) == BLANCO) {
@@ -38,6 +41,7 @@ public class ServicioDFS<T, G extends Grafo<T>> {
     }
 
     public void DFS_Visit(int vertice, HashMap<Integer, Integer> color) {
+        // Marcar el vértice como en proceso
         color.put(vertice, AMARILLO);
         tiempo++;
 
@@ -45,29 +49,35 @@ public class ServicioDFS<T, G extends Grafo<T>> {
 
         while (vecinosIterator.hasNext()) {
             Integer adyacente = vecinosIterator.next();
+
+            // Si el vértice adyacente aún no ha sido visitado, llamada recursiva a explorarlo
             if (color.get(adyacente) == BLANCO) {
                 DFS_Visit(adyacente, color);
             } else {
-                /*
-                Ejercicio 3
-                Implemente un algoritmo que determine si un grafo dirigido tiene algún ciclo.
-                */
+                /* Ejercicio 3
+                Implemente un algoritmo que determine si un grafo dirigido tiene algún ciclo. */
+
+                // Si see ncuentra un vértice que aún está en proceso, hay un ciclo
+
+                // Un vértice en AMARILLO significa que estamos volviendo a un nodo que aún no ha sido terminado,
+                // lo que indica la presencia de un ciclo en el grafo dirigido
                 if (color.get(adyacente) == AMARILLO) {
                     System.out.println("Existe un ciclo.");
                 }
             }
         }
 
+        // Una vez que se ha terminado de explorar todos los vecinos, marcar el vértice como terminado
         color.put(vertice, NEGRO);
+
+        // Guardar el tiempo de finalización del vértice
         distancias.put(vertice, tiempo);
     }
 
-    /*
-    Ejercicio 4
+    /* Ejercicio 4
     Escribir un algoritmo que, dado un grafo dirigido y dos vértices i, j de este grafo, devuelva el
     camino simple (sin ciclos) de mayor longitud del vértice i al vértice j. Puede suponerse que el
-    grafo de entrada es acíclico.
-    */
+    grafo de entrada es acíclico. */
 
     public List<Integer> caminoMasLargo(int inicio, int fin) {
         DFS();
@@ -103,11 +113,9 @@ public class ServicioDFS<T, G extends Grafo<T>> {
         return caminoMasLargo(inicio, fin);
     }
 
-    /*
-    Ejercicio 5
+    /* Ejercicio 5
     Escriba un algoritmo que dado un grafo G y un vértice v de dicho grafo, devuelva una lista
-    con todos los vértices a partir de los cuales exista un camino en G que termine en v.
-    */
+    con todos los vértices a partir de los cuales exista un camino en G que termine en v. */
 
     public List<Integer> verticesConCaminoHasta(int vertice) {
         DFS();
@@ -123,6 +131,7 @@ public class ServicioDFS<T, G extends Grafo<T>> {
         visitado[vertice] = true;
 
         Iterator<Integer> verticesIterator = grafo.obtenerVertices();
+
         while (verticesIterator.hasNext()) {
             int adyacente = verticesIterator.next();
             if (!visitado[adyacente]) {
