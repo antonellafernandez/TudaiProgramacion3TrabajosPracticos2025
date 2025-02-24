@@ -24,10 +24,9 @@ public class Main {
 
         // Ejercicio 3
         int xNotacionDecimal = 26;
-        ArrayList<Integer> xNotacionBinaria = new ArrayList<>();
 
         System.out.println("========== Ejercicio 3 ==========");
-        System.out.println(conversorDecimalABinario(xNotacionBinaria, xNotacionDecimal));
+        System.out.println(conversorDecimalABinario(xNotacionDecimal));
 
         //Ejercicio 4
         ArrayList<Integer> D = new ArrayList<>();
@@ -53,10 +52,10 @@ public class Main {
         imprimirArreglo(F);
 
         // Ordenar por selección
-
+        seleccion(F);
 
         System.out.println("Arreglo ordenado por selección");
-        System.out.println("???");
+        imprimirArreglo(F);
 
         System.out.println("Arreglo 2 desordenado");
         imprimirArreglo(G);
@@ -166,18 +165,22 @@ public class Main {
     equivalente en notación binaria. */
 
     // Complejidad es O(log X) siendo X el número a convertir
-    public static ArrayList<Integer> conversorDecimalABinario(ArrayList<Integer> A, int X) {
-        if (X < 2) {
-            A.add(X % 2);
+    public static ArrayList<Integer> conversorDecimalABinario(int X) {
+        ArrayList<Integer> xNotacionBinaria = new ArrayList<>();
 
-            Collections.reverse(A);
-            return A;
+        convertirRecursivo(xNotacionBinaria, X);
+        Collections.reverse(xNotacionBinaria);
+        return xNotacionBinaria;
+    }
+
+    private static void convertirRecursivo(ArrayList<Integer> resultado, int X) {
+        if (X < 2) {
+            resultado.add(X % 2);
         } else {
-            A.add(X % 2);
+            resultado.add(X % 2);
             X = X / 2;
 
-            A = conversorDecimalABinario(A, X);
-            return A;
+            convertirRecursivo(resultado, X);
         }
     }
 
@@ -233,7 +236,30 @@ public class Main {
 
     • ¿Qué complejidad big-O tienen estos algoritmos? */
 
-    // Algoritmo de ordenamiento por selección ???
+    /* Algoritmo de ordenamiento por selección
+    Similar al burbujeo sólo que hace un intercambio por pasada.
+    En cada iteración busca el elemento más grande y lo coloca sobre el final del arreglo a procesar. */
+
+    // O(n²) ya que hay dos bucles anidados.
+    public static void seleccion(int[] A) {
+        int n = A.length;
+
+        for (int i = n - 1; i > 0; i--) { // Se recorre de derecha a izquierda
+            int maxIndex = 0; // Asumir que el mayor está en la posición 0
+
+            // Buscar el máximo en la parte no ordenada
+            for (int j = 1; j <= i; j++) {
+                if (A[j] > A[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+
+            // Intercambiar el máximo encontrado con el último de la parte no ordenada
+            int temp = A[i];
+            A[i] = A[maxIndex];
+            A[maxIndex] = temp;
+        }
+    }
 
     /* Algoritmo de ordenamiento por burbujeo
     Consiste en comparar pares de elementos adyacentes en un array
