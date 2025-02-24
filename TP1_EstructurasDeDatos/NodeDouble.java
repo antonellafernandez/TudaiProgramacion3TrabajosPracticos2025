@@ -12,7 +12,7 @@ public class NodeDouble<T> {
         this.prev = null;
     }
 
-    public NodeDouble(T info, NodeDouble<T> next,NodeDouble<T> prev) {
+    public NodeDouble(T info, NodeDouble<T> next, NodeDouble<T> prev) {
         this.setInfo(info);
         this.setNext(next);
         this.setPrev(prev);

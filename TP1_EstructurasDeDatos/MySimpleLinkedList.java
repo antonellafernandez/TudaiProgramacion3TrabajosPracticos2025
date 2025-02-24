@@ -49,21 +49,22 @@ public class MySimpleLinkedList<T extends Comparable<T>> implements Iterable<T> 
 
     public void insertOrdered(T info) {
         Node<T> nuevo = new Node<T>(info, null);
+
         if (this.first == null || this.first.getInfo().compareTo(info) >= 0) {
             // Si la lista está vacía o el nuevo elemento es menor que el primero
             nuevo.setNext(this.first);
             this.first = nuevo;
         } else {
             Node<T> actual = this.first;
-            Node<T> anterior = null;
+            Node<T> tmp = null;
 
             while (actual != null && actual.getInfo().compareTo(info) < 0) {
-                anterior = actual;
+                tmp = actual;
                 actual = actual.getNext();
             }
 
             nuevo.setNext(actual);
-            anterior.setNext(nuevo);
+            tmp.setNext(nuevo);
         }
 
         this.size++; // Incrementar tamaño de la lista
