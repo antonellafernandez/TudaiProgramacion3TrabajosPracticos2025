@@ -10,56 +10,171 @@ caballo, el pasto jamás volvió a crecer. Luego de terminado el recorrido en al
 había pasto (señal de que en ellas no había estado el caballo). Escriba un algoritmo que deduzca el
 recorrido completo que hizo el caballo. */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CaballoDeAtila {
-    static final int N = 5; // Tamaño del tablero
-    static final int[] origen = {0, 0};
-    static final Movimiento[] movimientos = {
-            new Movimiento(0, -1), // Arriba
-            new Movimiento(0, 1),  // Abajo
-            new Movimiento(-1, 0), // Izquierda
-            new Movimiento(1, 0)   // Derecha
+    private static int N = 4;
+    private static ArrayList<int[]> mejorDeduccion;
+    private static int noVisitados;
+    private static int[] destino;
+    private static int[][] tablero = {
+            {0, 0, 0, 1}, // 0 = no visitado, 1 = visitado
+            {0, 0, 0, 1},
+            {1, 0, 0, 1},
+            {1, 1, 1, 1}
     };
 
     public static void main(String[] args) {
-        // Crear un tablero de N x N
-        Tablero tablero = new Tablero(N, origen);
+        mejorDeduccion = new ArrayList<>();
+        noVisitados = contarNoVisitados();
 
-        // Imprimir tablero inicial
-        System.out.println("Tablero inicial");
-        tablero.imprimirTablero();
+        int[] origen = buscarOrigen();
 
-        System.out.println();
+        if (origen != null) {
+            backtracking(origen);
+        }
 
-        // Empezamos el recorrido desde una posición inicial
-        int nroPisada = 0;
-        tablero.marcarCasilla(origen[0], origen[1], 1); // Marcar el origen como casilla visitada
-        backAtila(tablero, origen[0], origen[1], nroPisada); // Llamado al backtracking
+        if (mejorDeduccion.isEmpty()) {
+            System.out.println("No se ha encontrado solución.");
+        } else {
+            imprimir(mejorDeduccion);
+        }
     }
 
-    // Método para resolver el recorrido utilizando Backtracking
-    public static void backAtila(Tablero tablero, int x, int y, int nroPisada) {
-        // Condición base: regresar a la casilla inicial después de haber recorrido al menos una casilla
-        if (nroPisada > 1 && tablero.vecinaOrigen(x, y)) {
-            System.out.println("Tablero solución con " + nroPisada + " pisadas");
-            tablero.imprimirTablero();
+    public static int[] buscarOrigen() {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (tablero[i][j] == 0) {
+                    int[] origen = {i, j};
+                    destino = origen;
+                    return origen;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static int contarNoVisitados() {
+        int cant = 0;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (tablero[i][j] == 0) {
+                    cant++;
+                }
+            }
+        }
+
+        return cant;
+    }
+
+    public static void backtracking(int[] origen) {
+        ArrayList<int[]> deduccion = new ArrayList<>();
+        int pasos = 1;
+
+        deduccion.add(origen);
+        marcarVisitado(origen);
+
+        backtracking(origen, deduccion, pasos);
+    }
+
+    private static void backtracking(int[] actual, ArrayList<int[]> deduccionActual, int pasos) {
+        if ((actual[0] == destino[0]) && (actual[1] == destino[1])  && (pasos - 1 == noVisitados)) { // Condición de corte / Si llegue a destino (origen) y recorrí tdos los casilleros no visitados
+            if (mejorDeduccion.isEmpty()) {
+                mejorDeduccion = new ArrayList<>(deduccionActual);
+            }
+
             return;
         }
 
-        // Intentar mover a las casillas adyacentes
-        for (Movimiento mov : movimientos) {
-            int nuevoX = x + mov.getDx();
-            int nuevoY = y + mov.getDy();
+        ArrayList<int[]> vecinos = getVecinos(actual); // Me da los casilleros a los cuales me puedo mover
 
-            // Si el movimiento es válido
-            if (tablero.esFactible(nuevoX, nuevoY)) {
-                tablero.marcarCasilla(nuevoX, nuevoY, 1); // Marcar como visitada
+        for (int[] vecino : vecinos) {
+            boolean visitado = false;
+            int i = 0;
 
-                // Llamado recursiva
-                backAtila(tablero, nuevoX, nuevoY, nroPisada + 1);
+            while (!visitado && (i < deduccionActual.size())) {
+                int[] aux = deduccionActual.get(i);
 
-                // Desmarcar para probar otros caminos
-                tablero.marcarCasilla(nuevoX, nuevoY, 0);
+                if (Arrays.equals(aux, vecino)) { // Comparar contenido, no referencia
+                    visitado = true;
+                } else {
+                    i++;
+                }
             }
+
+            if (!visitado || Arrays.equals(vecino, destino)) {
+                // Aplicar / Hacer cambios / Agregar solucion
+                deduccionActual.add(vecino);
+                marcarVisitado(vecino);
+                pasos++;
+
+                if (mejorDeduccion.isEmpty()) { // Poda
+                    backtracking(vecino, deduccionActual, pasos); // Llamado recursivo
+                }
+
+                // Deshacer
+                quitarUltimo(deduccionActual);
+                marcarNoVisitado(vecino);
+                pasos--;
+            }
+        }
+    }
+
+    public static void marcarVisitado(int[] casillero) {
+        tablero[casillero[0]][casillero[1]] = 1;
+    }
+
+    public static void marcarNoVisitado(int[] casillero) {
+        tablero[casillero[0]][casillero[1]] = 0;
+    }
+
+    public static void quitarUltimo(ArrayList<int[]> deduccion) {
+        deduccion.remove(deduccion.size() - 1);
+    }
+
+    private static ArrayList<int[]> getVecinos(int[] actual) {
+        ArrayList<int[]> vecinos = new ArrayList<>();
+
+        int i = actual[0];
+        int j = actual[1];
+
+        // Arriba
+        if (j - 1 >= 0) { // Verificar movimiento factible
+            if (tablero[i][j - 1] == 0 || (destino[0] == i && (destino[1] == j - 1))) { // Verificar que el vecino no esté visitado en el tablero inicial
+                vecinos.add(new int[]{i, j - 1});
+            }
+        }
+
+        // Abajo
+        if (j + 1 < N) {
+            if (tablero[i][j + 1] == 0 || (destino[0] == i && (destino[1] == j + 1))) {
+                vecinos.add(new int[]{i, j + 1});
+            }
+        }
+
+        // Derecha
+        if (i + 1 < N) {
+            if (tablero[i + 1][j] == 0 || ((destino[0] == i + 1) && destino[1] == j)) {
+                vecinos.add(new int[]{i + 1, j});
+            }
+        }
+
+        // Izquierda
+        if (i - 1 >= 0) {
+            if (tablero[i - 1][j] == 0 || ((destino[0] == i - 1) && destino[1] == j)) {
+                vecinos.add(new int[]{i - 1, j});
+            }
+        }
+
+        return vecinos;
+    }
+
+    public static void imprimir(ArrayList<int[]> deduccion) {
+        for (int [] actual : deduccion) {
+            System.out.println("(" + actual[0] + ", " + actual[1] + ")");
         }
     }
 }
