@@ -6,93 +6,99 @@ Asignación de tareas a procesadores. Se tienen m procesadores idénticos y n ta
 de ejecución dado. Se requiere encontrar una asignación de tareas a procesadores de manera de
 minimizar el tiempo de ejecución del total de tareas. */
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class AsignacionTareasAProcesadores {
-    private ArrayList<Procesador> procesadores;
-    private ArrayList<Tarea> tareas;
+    static ArrayList<Procesador> mejorAsignacion = new ArrayList<>();
+    static int mejorTiempo = 100;
 
-    private int mejorTiempo;
-    private ArrayList<Procesador> mejorAsignacion; // Almacena la mejor solución
+    public static ArrayList<Procesador> Backtracking(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas) {
+        tareas.sort(new ComparadorTiempoEjecucion()); // Longest Processing Time First
 
-    public static void main(String[] args) {
-        AsignacionTareasAProcesadores asignacion = new AsignacionTareasAProcesadores();
-        asignacion.mejorAsignacion = asignacion.Backtracking();
+        Backtracking(procesadores, tareas, 0);
 
-        // Imprimir la mejor asignación encontrada
-        for (int i = 0; i < asignacion.mejorAsignacion.size(); i++) {
-            System.out.println("Procesador " + i + ": " + asignacion.mejorAsignacion.get(i));
-        }
+        return mejorAsignacion;
     }
 
-    public AsignacionTareasAProcesadores() {
-        this.procesadores = new ArrayList<>();
-        this.tareas = new ArrayList<>();
-        this.mejorTiempo = Integer.MAX_VALUE; // Inicializar con un valor muy alto
+    private static void Backtracking(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas, int tareaActual) {
+        if (tareaActual == tareas.size()) { // Encontramos una asignación válida, actualizar mejor tiempo
+            if (mejorAsignacion.isEmpty()) {
+                // Buscamos el mayor tiempo de ejecución de la asignación
+                int maxTiempo = 0;
+                for (Procesador p : procesadores) {
+                    maxTiempo = Math.max(maxTiempo, p.getTiempoEjecucion());
+                }
 
-        // Crear y agregar procesadores
-        for (int i = 0; i < 3; i++) {
-            this.procesadores.add(new Procesador());
-        }
+                if (maxTiempo < mejorTiempo) {
+                    mejorTiempo = maxTiempo;
+                    mejorAsignacion = new ArrayList<>();
 
-        // Crear y agregar tareas
-        int[] tiempos = {10, 15, 20, 25, 30, 3, 52, 2, 51, 1};
-        for (int tiempo : tiempos) {
-            this.tareas.add(new Tarea(tiempo));
-        }
-    }
+                    for (Procesador p : procesadores) {
+                        Procesador copia = new Procesador();
 
-    public ArrayList<Procesador> Backtracking() {
-        // Ordenar tareas de mayor a menor
+                        for (Tarea t : p.getTareasAsignadas()) {
+                            copia.addTarea(t);
+                        }
 
-        // Heurística de "Largest Processing Time First" (LPT).
-        // Asignar primero las tareas más pesadas ayuda a equilibrar la carga
-        // entre procesadores y reduce el tiempo máximo de ejecución.
-        Collections.sort(this.tareas, new ComparadorTiempoEjecucion());
-
-        // Array para almacenar los tiempos de carga de cada procesador
-        int[] cargaProcesadores = new int[procesadores.size()];
-
-        // Llamado a la función recursiva
-        resolverBacktracking(0, cargaProcesadores);
-
-        return procesadores;
-    }
-
-    private void resolverBacktracking(int index, int[] cargaProcesadores) {
-        if (index == tareas.size()) { // Caso base: todas las tareas fueron asignadas
-            int tiempoMaximo = encontrarTiempoMaximo(cargaProcesadores);
-            mejorTiempo = Math.min(mejorTiempo, tiempoMaximo);
-            mejorAsignacion = procesadores; // Guardar la mejor solucion
+                        mejorAsignacion.add(copia);
+                    }
+                }
+            }
 
             return;
         }
 
-        Tarea tareaActual = tareas.get(index); // Obtener la tarea que vamos a asignar
+        for (Procesador p : procesadores) {
+            // Asignamos la tarea al procesador
+            p.addTarea(tareas.get(tareaActual));
 
-        for (int i = 0; i < procesadores.size(); i++) { // Intentar asignar a cada procesador
-            cargaProcesadores[i] += tareaActual.getTiempoEjecucion(); // Asignar temporalmente
-            procesadores.get(i).addTarea(tareaActual); // Agregar la tarea al procesador
-
-            if (cargaProcesadores[i] < mejorTiempo) { // Poda: evitar seguir si ya es peor que la mejor solución
-                resolverBacktracking(index + 1, cargaProcesadores);
+            // Poda
+            if (p.getTiempoEjecucion() < mejorTiempo) {
+                Backtracking(procesadores, tareas, tareaActual + 1);
             }
 
-            // Deshacer la asignación para probar otras combinaciones (Backtrack)
-            cargaProcesadores[i] -= tareaActual.getTiempoEjecucion();
-            procesadores.get(i).removeTarea(tareaActual);
+            // Bactrack: Deshacemos la asignación
+            p.removeTarea(tareas.get(tareaActual));
         }
     }
 
-    private int encontrarTiempoMaximo(int[] cargaProcesadores) {
-        int max = 0;
+    public static void main(String[] args) {
+        // Procesadores
+        ArrayList<Procesador> procesadores = new ArrayList<>();
 
-        for (int carga : cargaProcesadores) {
-            max = Math.max(max, carga); // Math.max devuelve el mayor de los dos valores
-        }
+        Procesador p1 = new Procesador();
+        Procesador p2 = new Procesador();
+        Procesador p3 = new Procesador();
+        Procesador p4 = new Procesador();
 
-        // max contiene la mayor carga de los procesadores
-        return max;
+        procesadores.add(p1);
+        procesadores.add(p2);
+        procesadores.add(p3);
+        procesadores.add(p4);
+
+        // Tareas
+        ArrayList<Tarea> tareas = new ArrayList<>();
+
+        Tarea t1 = new Tarea(10);
+        Tarea t2 = new Tarea(20);
+        Tarea t3 = new Tarea(30);
+        Tarea t4 = new Tarea(40);
+        Tarea t5 = new Tarea(50);
+        Tarea t6 = new Tarea(60);
+        Tarea t7 = new Tarea(70);
+        Tarea t8 = new Tarea(80);
+
+        tareas.add(t1);
+        tareas.add(t2);
+        tareas.add(t3);
+        tareas.add(t4);
+        tareas.add(t5);
+        tareas.add(t6);
+        tareas.add(t7);
+        tareas.add(t8);
+
+        // Llamado a Bactracking
+        System.out.println(Backtracking(procesadores, tareas));
+        System.out.println("Mejor tiempo: " + mejorTiempo);
     }
 }

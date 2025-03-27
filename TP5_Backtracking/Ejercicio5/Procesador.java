@@ -23,10 +23,20 @@ public class Procesador {
         this.tareasAsignadas.remove(t);
     }
 
+    public int getTiempoEjecucion() {
+        int tiempo = 0;
+
+        for (Tarea t : this.tareasAsignadas) {
+            tiempo += t.getTiempoEjecucion();
+        }
+
+        return tiempo;
+    }
+
     @Override
     public String toString() {
         return "Procesador{" +
                 "tareasAsignadas=" + tareasAsignadas +
-                '}';
+                "} \n";
     }
 }
