@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio1;
+package TP5_Backtracking.Ejercicio01;
 
 import TP4_Grafos.Arco;
 

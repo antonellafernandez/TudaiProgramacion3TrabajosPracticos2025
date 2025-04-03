@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio7;
+package TP5_Backtracking.Ejercicio07;
 
 /* Ejercicio 7
 Tablero mágico. Dado un tablero de tamaño n x n, construir un algoritmo que ubique (si es posible)

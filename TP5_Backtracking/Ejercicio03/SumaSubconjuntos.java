@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio3;
+package TP5_Backtracking.Ejercicio03;
 
 /* Ejercicio 3
 
