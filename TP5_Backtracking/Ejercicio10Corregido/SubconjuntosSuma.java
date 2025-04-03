@@ -13,20 +13,18 @@ public class SubconjuntosSuma {
     private final int N = 3;
     private final int SUMA = 0;
     private List<List<Integer>> soluciones;
-    private Set<Integer> visitados;
 
     public List<List<Integer>> backSubconjuntos(List<Integer> conjunto) {
         soluciones = new ArrayList<>();
-        visitados = new HashSet<>();
 
         ArrayList<Integer> auxiliar = new ArrayList<>();
 
-        backSubconjuntos(conjunto, 0, auxiliar);
+        backSubconjuntos(conjunto, 0, 0, auxiliar);
 
         return soluciones;
     }
 
-    private void backSubconjuntos(List<Integer> conjunto, Integer suma, List<Integer> auxiliar) {
+    private void backSubconjuntos(List<Integer> conjunto, Integer actual, Integer suma, List<Integer> auxiliar) {
         if (auxiliar.size() == N) { // Caso base
             if (suma == SUMA) {
                 soluciones.add(new ArrayList<>(auxiliar));
@@ -34,18 +32,10 @@ public class SubconjuntosSuma {
 
             return; // Salir de la recursión
         } else {
-            for (Integer n : conjunto) {
-                if (!visitados.contains(n)) { // Intento de asignación
-                    visitados.add(n);
-                    auxiliar.add(n);
-                    suma += n;
-                    backSubconjuntos(conjunto, suma, auxiliar); // Recursión
-
-                    // Backtrack
-                    visitados.remove(n);
-                    auxiliar.remove(auxiliar.size() - 1);
-                    suma -= n;
-                }
+            for (int i = actual; i < conjunto.size(); i++) {
+                auxiliar.add(conjunto.get(i));
+                backSubconjuntos(conjunto, i + 1, suma + conjunto.get(i), auxiliar); // Recursión
+                auxiliar.remove(auxiliar.size() - 1); // Backtrack
             }
         }
     }
