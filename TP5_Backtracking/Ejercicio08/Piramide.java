@@ -16,16 +16,6 @@ public class Piramide {
     public static final int B = 3; // Base de la pirámide
     public static List<int[]> mejorPiramide;
 
-    public static void main(String[] args) {
-        List<int[]> piramide = new ArrayList<>();
-
-        for (int i = B; i > 0; i--) {
-            piramide.add(new int[i]);
-        }
-
-        backtracking(piramide);
-    }
-
     public static void backtracking(List<int[]> piramide) {
         mejorPiramide = null; // Reiniciar antes de la búsqueda
         backtracking(piramide, new HashSet<>(), 0, 0);
@@ -93,5 +83,15 @@ public class Piramide {
             }
             System.out.println();
         }
+    }
+
+    public static void main(String[] args) {
+        List<int[]> piramide = new ArrayList<>();
+
+        for (int i = B; i > 0; i--) {
+            piramide.add(new int[i]);
+        }
+
+        backtracking(piramide);
     }
 }
