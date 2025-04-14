@@ -1,4 +1,4 @@
-package TP6_Greedy.Ejercicio01;
+package TP6_Greedy.Ejercicio01Funciona;
 
 /* Ejercicio 1
 
