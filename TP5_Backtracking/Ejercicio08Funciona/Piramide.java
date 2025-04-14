@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio08;
+package TP5_Backtracking.Ejercicio08Funciona;
 
 /* Ejercicio 8
 
@@ -16,9 +16,9 @@ public class Piramide {
     public static final int B = 3; // Base de la pirámide
     public static List<int[]> mejorPiramide;
 
-    public static void backtracking(List<int[]> piramide) {
+    public static void backPiramide(List<int[]> piramide) {
         mejorPiramide = null; // Reiniciar antes de la búsqueda
-        backtracking(piramide, new HashSet<>(), 0, 0);
+        backPiramide(piramide, new HashSet<>(), 0, 0);
 
         if (mejorPiramide != null) {
             imprimir(mejorPiramide);
@@ -27,7 +27,7 @@ public class Piramide {
         }
     }
 
-    private static void backtracking(List<int[]> piramide, Set<Integer> usados, int fila, int col) {
+    private static void backPiramide(List<int[]> piramide, Set<Integer> usados, int fila, int col) {
         if (fila == piramide.size()) { // Si llenamos toda la pirámide, verificamos si es solución
             mejorPiramide = new ArrayList<>();
 
@@ -55,7 +55,7 @@ public class Piramide {
                     siguienteCol = col + 1;
                 }
 
-                backtracking(piramide, usados, siguienteFila, siguienteCol);
+                backPiramide(piramide, usados, siguienteFila, siguienteCol);
 
                 usados.remove(num);
                 piramide.get(fila)[col] = 0;
@@ -92,6 +92,6 @@ public class Piramide {
             piramide.add(new int[i]);
         }
 
-        backtracking(piramide);
+        backPiramide(piramide);
     }
 }

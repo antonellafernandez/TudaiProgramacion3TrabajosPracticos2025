@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio02;
+package TP5_Backtracking.Ejercicio02HechoPorProfe;
 
 /* Ejercicio 2
 
@@ -9,24 +9,26 @@ camino la suma de los valores naturales de las casillas por las que pasa. Idea: 
 el laberinto como una matriz, de objetos, donde cada objeto tiene el valor natural, y cuatro
 booleanos, uno para cada dirección a la que se permite ir desde allí. */
 
-/*
-public class Backtracking {
+import java.util.ArrayList;
+
+public class Laberinto {
     private Casillero destino;
     private Camino mejorCamino;
 
-    public Camino back(Casillero origen) {
+    public Camino backLaberinto(Casillero origen) {
         Camino camino = new Camino();
 
         camino.agregarAlCamino(origen);
         camino.marcarVisitado(origen);
         camino.incrementar(origen.getValor()); // Sumar el valor del casillero de origen al camino
 
-        this.back(origen, camino); // Llamado recursivo
+        backLaberinto(origen, camino); // Llamado recursivo
+
         return mejorCamino;
     }
 
-    private void back(Casillero actual, Camino caminoActual) {
-        if (actual.equals(this.destino)) { // Si se llegó al destino (condición de corte)
+    private void backLaberinto(Casillero actual, Camino caminoActual) {
+        if (actual.equals(destino)) { // Si se llegó al destino (condición de corte)
             if (mejorCamino == null || mejorCamino.getValor() > caminoActual.getValor()) {
                 mejorCamino = caminoActual; // Actualizar mejorCamino
             }
@@ -43,7 +45,7 @@ public class Backtracking {
 
                     // Poda: si el valor del camino actual es menor o igual que el mejor camino, seguir explorando
                     if (mejorCamino == null || caminoActual.getValor() <= mejorCamino.getValor()) {
-                        back(vecino, caminoActual); // Llamada recursiva para explorar el vecino
+                        backLaberinto(vecino, caminoActual); // Llamada recursiva para explorar el vecino
                     }
 
                     // Deshacer
@@ -54,4 +56,4 @@ public class Backtracking {
             }
         }
     }
-} */
+}

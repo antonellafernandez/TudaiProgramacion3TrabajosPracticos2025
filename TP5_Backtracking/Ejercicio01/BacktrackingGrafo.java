@@ -21,16 +21,16 @@ public class BacktrackingGrafo<T> {
         this.maxNodosVisitados = 0;
     }
 
-    public List<Integer> encontrarCaminoMasLargo(int entrada, int salida) {
+    public List<Integer> backGrafo(int entrada, int salida) {
         List<Integer> caminoActual = new ArrayList<>();
         Set<Integer> visitados = new HashSet<>();
 
         // Iniciar la búsqueda desde la sala de entrada
-        backtracking(entrada, salida, caminoActual, visitados);
+        backGrafo(entrada, salida, caminoActual, visitados);
         return mejorCamino;
     }
 
-    private void backtracking(int actual, int salida, List<Integer> caminoActual, Set<Integer> visitados) {
+    private void backGrafo(int actual, int salida, List<Integer> caminoActual, Set<Integer> visitados) {
         // Agregar la sala actual al camino y marcarla como visitada
         caminoActual.add(actual);
         visitados.add(actual);
@@ -48,7 +48,7 @@ public class BacktrackingGrafo<T> {
             while (vecinos.hasNext()) {
                 int vecino = vecinos.next();
                 if (!visitados.contains(vecino)) { // Evitar ciclos
-                    backtracking(vecino, salida, caminoActual, visitados);
+                    backGrafo(vecino, salida, caminoActual, visitados);
                 }
             }
         }

@@ -16,11 +16,8 @@ public class SubconjuntosSuma {
 
     public List<List<Integer>> backSubconjuntos(List<Integer> conjunto) {
         soluciones = new ArrayList<>();
-
         ArrayList<Integer> auxiliar = new ArrayList<>();
-
         backSubconjuntos(conjunto, 0, 0, auxiliar);
-
         return soluciones;
     }
 

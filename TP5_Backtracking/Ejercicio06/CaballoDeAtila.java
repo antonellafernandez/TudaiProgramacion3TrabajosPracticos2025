@@ -32,7 +32,7 @@ public class CaballoDeAtila {
         int[] origen = buscarOrigen();
 
         if (origen != null) {
-            backtracking(origen);
+            backAtila(origen);
         }
 
         if (mejorDeduccion.isEmpty()) {
@@ -70,17 +70,17 @@ public class CaballoDeAtila {
         return cant;
     }
 
-    public static void backtracking(int[] origen) {
+    public static void backAtila(int[] origen) {
         ArrayList<int[]> deduccion = new ArrayList<>();
         int pasos = 1;
 
         deduccion.add(origen);
         marcarVisitado(origen);
 
-        backtracking(origen, deduccion, pasos);
+        backAtila(origen, deduccion, pasos);
     }
 
-    private static void backtracking(int[] actual, ArrayList<int[]> deduccionActual, int pasos) {
+    private static void backAtila(int[] actual, ArrayList<int[]> deduccionActual, int pasos) {
         if ((actual[0] == destino[0]) && (actual[1] == destino[1])  && (pasos - 1 == noVisitados)) { // Condición de corte / Si llegue a destino (origen) y recorrí tdos los casilleros no visitados
             if (mejorDeduccion.isEmpty()) {
                 mejorDeduccion = new ArrayList<>(deduccionActual);
@@ -112,7 +112,7 @@ public class CaballoDeAtila {
                 pasos++;
 
                 if (mejorDeduccion.isEmpty()) { // Poda
-                    backtracking(vecino, deduccionActual, pasos); // Llamado recursivo
+                    backAtila(vecino, deduccionActual, pasos); // Llamado recursivo
                 }
 
                 // Deshacer

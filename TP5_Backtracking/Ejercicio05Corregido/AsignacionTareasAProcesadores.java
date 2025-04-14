@@ -12,15 +12,15 @@ public class AsignacionTareasAProcesadores {
     static ArrayList<Procesador> mejorAsignacion = new ArrayList<>();
     static int mejorTiempo = 100;
 
-    public static ArrayList<Procesador> Backtracking(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas) {
+    public static ArrayList<Procesador> backProcesadores(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas) {
         tareas.sort(new ComparadorTiempoEjecucion()); // Longest Processing Time First
 
-        Backtracking(procesadores, tareas, 0);
+        backProcesadores(procesadores, tareas, 0);
 
         return mejorAsignacion;
     }
 
-    private static void Backtracking(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas, int tareaActual) {
+    private static void backProcesadores(ArrayList<Procesador> procesadores, ArrayList<Tarea> tareas, int tareaActual) {
         if (tareaActual == tareas.size()) { // Encontramos una asignación válida, actualizar mejor tiempo
             if (mejorAsignacion.isEmpty()) {
                 // Buscamos el mayor tiempo de ejecución de la asignación
@@ -54,7 +54,7 @@ public class AsignacionTareasAProcesadores {
 
             // Poda
             if (p.getTiempoEjecucion() < mejorTiempo) {
-                Backtracking(procesadores, tareas, tareaActual + 1);
+                backProcesadores(procesadores, tareas, tareaActual + 1);
             }
 
             // Bactrack: Deshacemos la asignación
@@ -98,7 +98,7 @@ public class AsignacionTareasAProcesadores {
         tareas.add(t8);
 
         // Llamado a Bactracking
-        System.out.println(Backtracking(procesadores, tareas));
+        System.out.println(backProcesadores(procesadores, tareas));
         System.out.println("Mejor tiempo: " + mejorTiempo);
     }
 }
