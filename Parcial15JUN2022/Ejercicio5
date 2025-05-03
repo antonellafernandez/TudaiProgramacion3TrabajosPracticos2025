@@ -1,0 +1,15 @@
+Ejercicio 5
+
+Diga para cada una de las siguientes afirmaciones si son verdadera o falsa, y justifique su respuesta en cada caso:
+
+a) La búsqueda de un elemento en un árbol binario de búsqueda balanceado, comparado con la búsqueda en una
+lista vinculada ordenada, es similar en cuanto a la complejidad computacional.
+
+Falso! Un árbol binario de búsqueda balanceado tiene complejidad O(log₂n) mientras que en la lista vinculada ordenada es de O(n).
+--> La lista vinculada ordenada tiene la misma complejidad computacional que un árbol enredadera.
+
+b) En el algoritmo de ordenamiento Quicksort, el pivote siempre debe ser el elemento central del arreglo a ordenar.
+
+Falso! El pivote es el elemento alrededor del cual el resto de los elementos serán reordenados.
+Lo que sea menor que el pivote es movido a la partición izquierda y lo mayor movido a la partición derecha.
+Luego se realiza un QUicksort en cada partición.

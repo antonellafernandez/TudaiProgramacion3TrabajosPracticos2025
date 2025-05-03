@@ -1,12 +1,11 @@
 package Parcial15JUN2022;
 
-import java.util.List;
-
+/*
 public class Ejercicio2 {
     private float K; // Kilómetros a recorrer sin parar con tanque lleno
     private List<Estacion> S; // Solución
 
-    public List<Estacion> greedy(List<Estacion> R) {
+    public List<Estacion> greedy(List<Estacion> R) { // R es la ruta dada
         S = new LinkedList<Estacion>();
 
         int i = 0;
@@ -36,4 +35,4 @@ public class Ejercicio2 {
     public float distancia(Estacion A, Estacion B) {
         return 0; // Distancia en km entre estaciones
     }
-}
+} */
