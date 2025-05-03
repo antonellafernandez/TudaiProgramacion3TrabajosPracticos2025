@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio01;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio01;
 
 import java.util.*;
 

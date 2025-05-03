@@ -1,6 +1,6 @@
-package TP5_Backtracking.Ejercicio01;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio01;
 
-import TP4_Grafos.Arco;
+import TrabajosPracticos.TP4_Grafos.Arco;
 
 import java.util.Iterator;
 

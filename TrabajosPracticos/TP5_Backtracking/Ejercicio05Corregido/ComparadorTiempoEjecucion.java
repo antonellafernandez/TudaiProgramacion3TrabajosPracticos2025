@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio05Corregido;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio05Corregido;
 
 import java.util.Comparator;
 

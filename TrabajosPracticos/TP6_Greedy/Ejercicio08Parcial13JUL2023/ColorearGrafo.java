@@ -1,4 +1,4 @@
-package TP6_Greedy.Ejercicio08Parcial13JUL2023;
+package TrabajosPracticos.TP6_Greedy.Ejercicio08Parcial13JUL2023;
 
 /* Ejercicio 8
 

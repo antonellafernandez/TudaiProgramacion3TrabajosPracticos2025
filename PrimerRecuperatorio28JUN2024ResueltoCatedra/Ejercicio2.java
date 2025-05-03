@@ -1,4 +1,4 @@
-package PrimerRecuperatorio28JUN2024;
+package PrimerRecuperatorio28JUN2024ResueltoCatedra;
 
 /* Ejercicio 2
 

@@ -1,4 +1,4 @@
-package TP4_Grafos;
+package TrabajosPracticos.TP4_Grafos;
 
 public class Main {
     public static void main(String[] args) {

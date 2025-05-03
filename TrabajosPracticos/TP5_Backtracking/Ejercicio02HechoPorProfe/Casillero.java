@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio02HechoPorProfe;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio02HechoPorProfe;
 
 import java.util.ArrayList;
 

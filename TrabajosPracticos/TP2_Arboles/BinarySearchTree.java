@@ -1,4 +1,4 @@
-package TP2_Arboles;
+package TrabajosPracticos.TP2_Arboles;
 
 /* Ejercicio 1
 Implemente la estructura de Árbol Binario para búsquedas.

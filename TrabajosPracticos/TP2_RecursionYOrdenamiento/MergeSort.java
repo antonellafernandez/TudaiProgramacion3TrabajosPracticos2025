@@ -1,4 +1,4 @@
-package TP2_RecursionYOrdenamiento;
+package TrabajosPracticos.TP2_RecursionYOrdenamiento;
 
 // Complejidad en el peor de los casos O(n.log2 n)
 public class MergeSort {

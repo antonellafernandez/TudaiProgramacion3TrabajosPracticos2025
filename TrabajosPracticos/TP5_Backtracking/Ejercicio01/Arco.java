@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio01;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio01;
 
 public class Arco<T> {
     private int verticeOrigen;

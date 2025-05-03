@@ -1,4 +1,4 @@
-package TP4_Grafos;
+package TrabajosPracticos.TP4_Grafos;
 
 import java.util.HashMap;
 import java.util.Iterator;

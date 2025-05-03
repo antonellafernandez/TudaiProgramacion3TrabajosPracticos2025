@@ -1,4 +1,4 @@
-package TP3_EstructurasDeDispersion;
+package TrabajosPracticos.TP3_EstructurasDeDispersion;
 
 import java.util.Hashtable;
 import java.util.LinkedList;

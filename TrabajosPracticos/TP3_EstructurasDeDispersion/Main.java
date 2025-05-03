@@ -1,4 +1,4 @@
-package TP3_EstructurasDeDispersion;
+package TrabajosPracticos.TP3_EstructurasDeDispersion;
 
 public class Main {public static void main(String[] args) {
 

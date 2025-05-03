@@ -1,4 +1,4 @@
-package TP2_RecursionYOrdenamiento;
+package TrabajosPracticos.TP2_RecursionYOrdenamiento;
 
 import java.util.ArrayList;
 import java.util.Collections;

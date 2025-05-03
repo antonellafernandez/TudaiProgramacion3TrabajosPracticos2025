@@ -1,4 +1,4 @@
-package TP6_Greedy.Ejercicio04;
+package TrabajosPracticos.TP6_Greedy.Ejercicio04;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package TP6_Greedy.Ejercicio07;
+package TrabajosPracticos.TP6_Greedy.Ejercicio07;
 
 /* Ejercicio 7
 

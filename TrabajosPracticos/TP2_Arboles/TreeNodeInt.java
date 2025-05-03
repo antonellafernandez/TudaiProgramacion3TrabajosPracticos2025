@@ -1,4 +1,4 @@
-package TP2_Arboles;
+package TrabajosPracticos.TP2_Arboles;
 
 public class TreeNodeInt {
     private Integer value;

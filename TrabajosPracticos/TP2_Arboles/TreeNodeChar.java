@@ -1,4 +1,4 @@
-package TP2_Arboles;
+package TrabajosPracticos.TP2_Arboles;
 
 public class TreeNodeChar {
     private Character value;

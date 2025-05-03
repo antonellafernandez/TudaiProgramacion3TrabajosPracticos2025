@@ -1,4 +1,4 @@
-package TP2_Arboles;
+package TrabajosPracticos.TP2_Arboles;
 
 /* Ejercicio 5
 Dado un árbol binario donde todos los nodos poseen un carácter, de manera que cada rama del

@@ -1,4 +1,4 @@
-package Parcial14JUN2024.Ejercicio2;
+package Parcial14JUN2024ResueltoCatedra.Ejercicio2;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package TP4_Grafos;
+package TrabajosPracticos.TP4_Grafos;
 
 /* Ejercicio 1
 Implemente en JAVA las clases GrafoDirigido y GrafoNoDirigido. */

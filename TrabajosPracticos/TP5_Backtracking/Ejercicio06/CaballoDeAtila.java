@@ -1,4 +1,4 @@
-package TP5_Backtracking.Ejercicio06;
+package TrabajosPracticos.TP5_Backtracking.Ejercicio06;
 
 /* Ejercicio 6
 

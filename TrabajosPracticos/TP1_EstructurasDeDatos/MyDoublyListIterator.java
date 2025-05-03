@@ -1,4 +1,4 @@
-package TP1_EstructurasDeDatos;
+package TrabajosPracticos.TP1_EstructurasDeDatos;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

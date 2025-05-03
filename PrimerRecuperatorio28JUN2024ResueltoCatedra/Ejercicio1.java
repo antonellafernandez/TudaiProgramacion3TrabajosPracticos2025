@@ -1,7 +1,4 @@
-package PrimerRecuperatorio28JUN2024;
-
-import java.util.Hashtable;
-import java.util.Iterator;
+package PrimerRecuperatorio28JUN2024ResueltoCatedra;
 
 /* Ejercicio 1
 

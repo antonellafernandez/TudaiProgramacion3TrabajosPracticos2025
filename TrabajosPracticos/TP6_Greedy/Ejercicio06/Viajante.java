@@ -1,4 +1,4 @@
-package TP6_Greedy.Ejercicio06;
+package TrabajosPracticos.TP6_Greedy.Ejercicio06;
 
 /*  Se tienen n ciudades y las distancias entre cada par de ellas, representadas en una matriz.
     Problema: VIAJANTE se quiere partir de cada una de ellas y visitar exactamente una vez cada ciudad,
