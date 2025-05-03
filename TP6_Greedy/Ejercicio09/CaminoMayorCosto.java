@@ -20,7 +20,7 @@ b) Escriba un pseudo-java que lo resuelva mediante la estrategia Greedy. */
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/*
 public class CaminoMayorCosto {
     private int N = 3;
     private List<Integer> S; // Solución
@@ -55,4 +55,4 @@ public class CaminoMayorCosto {
     private boolean factible(List<Integer> S, int x) {
 
     }
-}
+} */

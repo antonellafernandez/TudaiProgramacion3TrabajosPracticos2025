@@ -1,0 +1,18 @@
+Tabla de hashing
+
+1ro) Calcular el threshold
+
+    L = M * Rp * ρd
+    L = 6 * 1 * 1 = 6 --> No será necesario hacer crecimiento ya que hay 4 elementos y habrán 5 después de insertar el 23
+                      --> Cantidad de elementos menor al límite
+
+2do) insertar 23 en --> 23 mod 6 = 5 --> Balde 5
+
+        | 13 |
+          /
+       | 1  |
+         /
+      | 61 |
+        /
+|    | 19 |    |    |    | 23 |
+ 0    1    2    3    4    5

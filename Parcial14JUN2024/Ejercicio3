@@ -1,0 +1,39 @@
+public class Bactracking {
+    List<String> palabras;
+    Diccionario diccionario;
+
+    public Backtracking(Diccionario d) {
+        this.diccionario = d;
+    }
+
+    public List<String> encontrarPalabras(Set<String> letras) {
+        palabras = new LinkedList<String>();
+        String palabra = new String();
+        encontrarPalabras(palabra, letras);
+        return palabras;
+    }
+
+    private void encontrarPalabras(String palabra, Set<String> letras) {
+        if (palabra.length() == 4) { // Caso Base
+            if (diccionario.esPalabraValida(palabra)) {
+                palabras.add(palabra);
+            }
+        } else {
+            for (String letra : letras) {
+                if ((palabra.length() != 0)  || (palabra.length() == 0) && (!diccionario.esVocal(letra))) {
+                    if (!palabra.contains(letra)) {
+                        // Intento de asignación
+                        palabra += letra;
+
+                        if (!poda(palabra)) {
+                            encontrarPalabras(palabra, letras); // Recursión
+                        }
+
+                        // Backtrack
+                        palabra -= letra; // O palabra.removeLast();
+                    }
+                }
+            }
+        }
+    }
+}

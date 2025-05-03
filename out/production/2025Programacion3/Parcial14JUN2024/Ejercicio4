@@ -1,0 +1,41 @@
+Inciso a) La lista es doblemente vinculada.
+
+public class DoublyLinkedList<T> {
+    private Nodo<T> primero;
+    private Nodo<T> ultimo;
+    private int tamanio; // Para mantener registro del tamaño en O(1)
+
+    public void agregarPrincipio(<T> elem) {
+        Nodo nuevo = new Nodo<T>(elem);
+
+        if (primero == null) {
+            primero = nuevo;
+            ultimo = nuevo;
+        } else {
+            nuevo.setSiguiente(primero);
+            primero = nuevo;
+        }
+    }
+
+    // Complejidad O(n) con n = elementos en la lista
+    public void agregarFinal(<T> elem) {
+        if (primero == null) {
+            agregarPrincipio(elem);
+        } else {
+            Nodo nuevo = new Nodo<T>(elem);
+            ultimo.setSiguiente(elem);
+            ultimo = nuevo;
+        }
+    }
+
+Inciso b)
+
+Para que un árbol binario tenga complejidad O(log₂n) debe darse que sea un árbol binario de búsqueda (o sea que hay un orden
+sobre los elementos), y además debe estar balanceado o completo.
+
+Inciso c)
+
+i) Falso, un factor de carga chico no asegura que no haya listas de rebalse, si que lo hace menos posible.
+
+ii) Verdadero, quiere decir que desde ese vértice no se pudo llegar hacia el vértice de valor inf y eso contradice la definición
+de conexo donde desde cualquier vértice se puede llegar a cualquier otro.
