@@ -28,7 +28,7 @@ public class SumaSubconjuntos {
             for (int i = actual; i < conjunto.size(); i++) {
                 auxiliar.add(conjunto.get(i));
 
-                if ((suma + conjunto.get(i)) <= 12) { // Poda
+                if ((suma + conjunto.get(i)) <= M) { // Poda
                     backSubconjuntos(conjunto, i + 1, suma + conjunto.get(i), auxiliar); // Recursión
                 }
 
