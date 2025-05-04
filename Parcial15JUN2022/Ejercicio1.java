@@ -1,7 +1,5 @@
 package Parcial15JUN2022;
 
-import java.util.*;
-
 /* Ejercicio 1
 
 Dado un grafo dirigido, el cual contiene a lo sumo UN solo ciclo, determine si, en caso de que tenga ciclo,
