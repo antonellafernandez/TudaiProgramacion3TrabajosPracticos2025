@@ -1,13 +1,11 @@
-package caminos;
+package Caminos;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import ProgramacionIII.tp4.Arco;
-import ProgramacionIII.tp4.Grafo;
-
+/*
 public class MejorCaminoConPeso {
 	
 	private Grafo<Integer> grafo;
@@ -78,3 +76,4 @@ public class MejorCaminoConPeso {
 	}
 	
 }
+*/

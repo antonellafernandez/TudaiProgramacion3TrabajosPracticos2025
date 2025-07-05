@@ -1,0 +1,21 @@
+a) Vértices = {1, 2, 4, 5, 6, 3, 7}
+Arcos Tree (1, 2) (2, 4) (4, 5) (5, 6) (1, 3)
+Arcos Back (2, 1)
+
+b) Si sabemos que un grafo dirigido es cíclico ¿podemos asegurar que siempre vamos a encontrar un arco back o depende
+del recorrido DFS que elijamos? Justificar.
+
+El recorrido DFS se puede utilizar para hacer el test de aciclicidad de un grafo, se determina que un grafo es acíclico
+si y sólo si en el recorrido DFS no se encuentran arcos de tipo back, es decir, nunca se intenta ir de un vértice amarillo
+a otro amarillo.
+
+Si el grafo ya está definido como cíclico, entonces existe al menos un ciclo, lo cual implica que se encontrará un arco back.
+
+Sin embargo, no todos los recorridos DFS necesariamente lo encontrarán en el primer intento, ya que depende del orden
+en que se visiten los nodos.
+
+c) Un grafo no dirigido de grado 7 compuesto por 7 vértices ¿Puede ser no conexo? Justifique su respuesta.
+No, porque de esa forma habría un camino posible entre cada par de vértices.
+
+d) Y un grafo dirigido con igual número de vértices y grado ¿Puede ser no conexo? Justifique su respuesta.
+Si, ver GD_NoConexo.png

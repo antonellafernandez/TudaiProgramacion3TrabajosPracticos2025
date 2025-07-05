@@ -7,11 +7,11 @@ de nodos) el ciclo de mayor tamaño (o sea, el ciclo compuesto por la mayor cant
 
 import java.util.*;
 /*
-public class Ejercicio4 {
+public class Ejercicio4y5 {
     private List<Integer> mayorCiclo;
     private Grafo g;
 
-    public Ejercicio4(Grafo g) {
+    public Ejercicio4y5(Grafo g) {
         this.g = g;
     }
 

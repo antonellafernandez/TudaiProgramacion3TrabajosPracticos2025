@@ -1,0 +1,50 @@
+Ejercicio 4
+a) Describa el algoritmo de mergesort - Complejidad O(n) siendo n la cantidad de elementos total.
+
+• Dividir: Se divide una secuencia de tamaño n, en dos secuencias tamaño n/2.
+• Ordenar recursivamente: Cada mitad se ordena de forma recursiva aplicando el mismo algoritmo.
+• Mezclar: Se combinan (fusionan) las dos mitades ya ordenadas en una sola secuencia ordenada.
+
+b) Diga si la siguiente afirmación es verdadera o falsa, y justifique su respuesta: El algoritmo de ordenamiento
+mergesort es igual de eficiente si se aplica sobre un array de valores que sobre una lista vinculada de valores.
+
+Falso. Al aplicarlo sobre un array requiere memoria auxiliar adicional, mientras que con la lista vinculada
+es mucho más eficiente ya que simplemente cambia los punteros al fusionar.
+
+c) Indique gráficamente, mediante un esquema de la pila de ejecución y cada registro de activación (con la
+información importante para este problema), la secuencia de pasos recursivos que llevan a ordenar con
+mergesort el siguiente array de números enteros: 25, 9, 33, 35, 11, -4, 100.
+
+[25, 9, 33, 35, 11, -4, 100]
+[25, 9, 33, 35] [11, -4, 100]
+[25, 9] [33, 35] [11, -4] [100]
+[9, 25] [33, 35] [-4, 11] [100]
+[9, 25, 33, 35] [-4, 11, 100]
+[-4, 9, 11, 25, 33, 35, 100]
+
+Ejercicio 5
+Responda:
+a) ¿Qué problema puede ocurrir en la pila de ejecución si una función recursiva no tiene una condición de corte
+adecuada o si se llama de forma incorrecta? ¿Cómo se manifiesta este problema?
+
+Si la función recursiva le falta un caso base o condición de corte o si se la llama de forma incorrecta,
+continuará su ejecución indefinidamente hasta agotar el espacio de la pila de ejecución,
+esto se manifiesta con el error "java.lang.StackOverflowError".
+
+b) Indique si la siguiente afirmación es verdadera o falsa y justifique: Para poder ejecutar dos tareas (threads)
+de manera concurrente, necesitamos si o si un procesador de doble núcleo (es decir, un procesador capaz de
+realizar dos tareas en paralelo).
+
+Falso. El paralelismo no necesariamente es independiente. Puedo tener un solo núcleo y dos tareas ejecutándose de manera concurrente, donde se van turnando el
+uso del procesador, de manera transparente para el usuario. Se están ejecutando simultáneamente, una en estado de ejecución
+y la otra en estado de espera y luego en viceversa turnándose.
+
+c) Indique si la siguiente afirmación es verdadera o falsa y justifique: Si hago un recrrido BFS en un grafo, cada
+vez que encuentre un nodo ya visitado, estaré encontrando un ciclo en el grafo.
+
+Falso. Encontrar un nodo ya visitado en BFS no significa automáticamente que hay un ciclo.
+Depende de si es un grafo dirigido o no, y del contexto (como el padre del nodo actual).
+
+d) ¿Cuál será la cantidad de hojas de un árbol binario completo de altura 16? Puede dejar expresado el cálculo.
+
+Cantidad de hojas AB completo = 2^16 = 65536 hojas

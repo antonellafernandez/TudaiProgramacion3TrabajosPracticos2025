@@ -1,12 +1,11 @@
-package caminos;
+package Caminos;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import ProgramacionIII.tp4.Grafo;
-
+/*
 public class UnCamino {
 	
 	private Grafo<?> grafo;
@@ -60,3 +59,4 @@ public class UnCamino {
 	}
 	
 }
+*/
