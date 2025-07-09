@@ -1,0 +1,12 @@
+Estados posibles de un Thread
+
+• New Thread ⭢ Estado de Creación: Cuando creo una instancia a partir de una Clase que EXTIENDE de Thread
+o crear un Thread y pasarle por parámetro al constructor una instancia de una Clase que IMPLEMENTA Runnable.
+• Running ⭢ Estado de Ejecución: Cuando a ese nuevo Thread le llama el método start().
+• Not Running ⭢ Estado de Espera: Puede ser explícito, que por algún motivo lo paso a propósito a un estado de espera
+o puede ser que el Sistema Operativo necesite darle un pedacito de tiempo a todos, lo saca del procesador para darle
+la ejecución a otro, en tiempo de microsegundos hace la viceversa y así retoma desde donde estaba hasta.
+• Dead ⭢ Estado Terminado: Termina la ejecución del método run().
+
+Cualquier aplicación en ejecución (proceso) en JAVA tiene al menos un thread llamado main thread,
+y justamente comienza su ejecución en el método main.

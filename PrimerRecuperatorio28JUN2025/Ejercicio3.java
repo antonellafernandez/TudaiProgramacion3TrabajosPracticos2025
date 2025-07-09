@@ -15,13 +15,7 @@ public HashMap<int, int> colorear(Grafo g) // El método devuelve para cada vér
 a) Dibuje el árbol de exploración del algoritmo indicando qué decisiones se toman en cada paso y qué
 información se lleva en los estados.
 b) Escriba un algoritmo en JAVA que resuelva el problema mediante la técnica de Backtracking.
-c) Describa cuál sería la estrategia de poda. */
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+c) Describa cuál sería la estrategia de poda.
 
 public class Ejercicio3 {
     private HashMap<Integer, Integer> solucion;
@@ -91,3 +85,4 @@ public class Ejercicio3 {
         return true; // Color válido
     }
 }
+*/

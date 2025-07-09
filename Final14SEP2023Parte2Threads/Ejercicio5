@@ -1,0 +1,7 @@
+a) A, B y C son salidas verdaderas, el Sistema Operativo da de manera selectiva un pedacito de tiempo de ejecución
+a cada thread y se ve esa aleatoridad impresa en pantalla. En cambio, D es una salida falsa ya que no podría pasar de
+Iteración 0 del thread juan a Iteración 2 del thread juan, las iteraciones se dan de forma ordenada digamos 0, 1, 2
+para el mismo thread, nunca podría saltearse un índice.
+
+b) No, la salida puede seguir siendo "desordenada" si no se utiliza en conjunto con WAIT y NOTIFY
+para que se coordinen o alternen de forma ordenada.
