@@ -14,9 +14,7 @@ Se buscará que el costo total de los peajes a pagar sea el menor posible.
 Escriba un algoritmo en JAVA que dado el grafo mencionado, devuelva qué ciudad es la que debe
 seleccionarse para construir el centro de distribución.
 
-El algoritmo deberá tener complejidad computacional menor o igual a O(n^3). */
-
-import java.util.HashMap;
+El algoritmo deberá tener complejidad computacional menor o igual a O(n^3).
 
 public class Ejercicio1 {
     public String mejorCiudad(Grafo g){
@@ -45,7 +43,7 @@ public class Ejercicio1 {
                 mejorCosto = costoActual;
             }
         }
-        
+
         return mejorCiudad;
     }
-}
+} */
