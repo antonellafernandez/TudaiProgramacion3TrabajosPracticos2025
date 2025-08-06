@@ -1,6 +1,7 @@
 package Final17JUL2025;
 
 /* Ejercicio 2
+
 Implemente en JAVA un algoritmo que dado 2 árboles binarios de
 búsqueda determine si ambos tienen la misma estructura. Por estructura
 nos referimos a la misma configuración de nodos sin importar el valor de

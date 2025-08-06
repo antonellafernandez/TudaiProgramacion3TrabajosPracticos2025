@@ -1,6 +1,8 @@
 package Final17JUL2025;
 
-/* Dado un juego de dominó compuesto de 28 fichas se desea encontrar una secuencia circular de fichas
+/* Ejercicio 3
+
+Dado un juego de dominó compuesto de 28 fichas se desea encontrar una secuencia circular de fichas
 que utilice la totalidad de las fichas y respete las restricciones de ubicacion de 2 fichas consecutivas
 que coincidan en el número.
 
