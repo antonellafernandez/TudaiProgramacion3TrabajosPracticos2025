@@ -12,12 +12,12 @@ Si hay más de un ciclo con el mismo valor máximo, dar como resultado cualquier
 
 /* Backtracking
 public class Ejercicio1 {
-    private Hashtable<Integer, String> colores;
+    private HashMap<Integer, String> colores;
     // Ciclo: Almacena el camino (secuencia de vértices) y el costo (suma de arcos)
     private Ciclo mejorSolucion;
 
     public Ciclo ejercicio1(Grafo<Float> g) {
-        colores = new Hashtable<>();
+        colores = new HashMap<>();
         mejorSolucion = new Ciclo();
         mejorSolucion.setCosto(0);
 
@@ -60,7 +60,7 @@ public class Ejercicio1 {
                     obtenerCicloHamiltoneano(g, arco.getVerticeDestino(), origen, ciclo);
 
                     ciclo.removeVertice(arco.getVerticeDestino());
-                    ciclo.costo-= (arco.getEtiqueta());
+                    ciclo.costo -= (arco.getEtiqueta());
                     colores.put(arco.getVerticeDestino(), "B");
                 }
             }
