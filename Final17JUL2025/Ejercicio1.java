@@ -19,99 +19,33 @@ El algoritmo deberá tener complejidad computacional menor o igual a O(n^3). */
 import java.util.HashMap;
 
 public class Ejercicio1 {
-    private Grafo<String> grafo;
-    private HashMap<String, String> colores; // <Vertice, Color>
-    // Ciclo: Almacena el camino (secuencia de vértices) y el costo (suma de arcos)
-    private Ciclo mejorSolucion;
+    public String mejorCiudad(Grafo g){
+        Iterator<String> ciudades = g.obtenerVertices();
+        String mejorCiudad = null;
+        Integer mejorCosto = null; // Menor costo
 
-    public Ciclo ejercicio1() {
-        colores = new HashMap<>();
-        mejorSolucion = new Ciclo();
-        mejorSolucion.setCosto(0);
+        while (ciudades.hasNext()) {
+            String origen = ciudades.next();
+            int[] distancias = g.dijkstra(origen);
+            int costoActual = 0;
 
-        // Inicialización
-        Iterator<String> it = g.obtenerVertices();
+            Iterator<String> destinos = g.obtenerVertices();
 
-        while (it.hasNext()) {
-            colores.put(it.next(), "B");
-        }
+            while (destinos.hasNext()) {
+                String destino = destinos.next();
 
-        Ciclo ciclo = new Ciclo();
-        String origen = g.obtenerVertices().next(); // Obtener el primero de los vértices
-        ciclo.addVertice(origen);
-        ciclo.setCosto(0);
-        obtenerCicloHamiltoneano(g, origen, origen, ciclo);
-
-        return mejorSolucion;
-    }
-
-    public static void obtenerCicloHamiltoneano(String actual, String origen, Ciclo cicloActual) {
-        // Cuando en el camino tenemos todos los vértices + el origen 2 veces (inicio y fin)
-        if (ciclo.getCamino().size() == grafo.cantidadVertices() + 1) {
-            if (actual.equals(origen)) {
-                // Operar solución actual contra mejor solución
-                if (ciclo.getCosto() < mejorSolucion.getCosto()) {
-                    mejorSolucion = new Ciclo(ciclo); // Copia el camino y el costo
+                if (!origen.equals(destino)) {
+                    // Costo de ir y volver
+                    costoActual += 2 * distancias[destino];
                 }
             }
-        } else {
-            Iterator<Arco<Integer>> adyacentes = g.obtenerArcos(actual);
 
-            while (adyacentes.hasNext()) {
-                Arco<Integer> adyacente = adyacentes.next();
-
-                if (colores.get(arco.getVerticeDestino().equals("B"))) {
-                    // Intento de asignación
-                    ciclo.addVertice(arco.getVerticeDestino());
-                    ciclo.costo += (arco.getEtiqueta());
-                    colores.put(arco.getVerticeDestino(), "A");
-
-                    // Recursión
-                    obtenerCicloHamiltoneano(g, arco.getVerticeDestino(), origen, ciclo);
-
-                    // Backtrack
-                    ciclo.removeVertice(arco.getVerticeDestino());
-                    ciclo.costo -= (arco.getEtiqueta());
-                    colores.put(arco.getVerticeDestino(), "B");
-                }
+            if (costoActual < mejorCosto || mejorCosto == null) {
+                mejorCiudad = origen;
+                mejorCosto = costoActual;
             }
         }
-    }
-
-
-
-
-
-
-
-
-
-
-    /*
-    private Grafo<String> grafo; // Cada vértice tiene el nombre de la ciudad
-    private String mejorCiudad;
-    private Integer mejorCosto;
-
-    public Ejercicio1(Grafo<String> g) {
-        this.grafo = g;
-        this.mejorCiudad = null;
-        this.mejorCosto = null;
-    }
-
-    public String encontrarMejorCiudad() {
-        Iterator<String> ciudades = grafo.ObtenerVertices();
-
-        for (String ciudad : ciudades) {
-            MejorCaminoConPeso mccp = new MejorCaminoConPeso(grafo);
-            List<String> mejorSolucion = mccp.encontrarMejorCamino(ciudad, ciudad);
-            Integer mejorPeso = mccp.mejorPeso();
-
-            if (mejorCiudad == null || (mejorCosto > mejorPeso) {
-                mejorCiudad = mejorSolucion.gerFirst();
-                mejorCosto = mejorPeso;
-            }
-        }
-
+        
         return mejorCiudad;
-    }*/
+    }
 }
