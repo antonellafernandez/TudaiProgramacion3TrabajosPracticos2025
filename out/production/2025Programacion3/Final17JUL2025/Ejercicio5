@@ -1,0 +1,33 @@
+Ejercicio 5
+
+Responda:
+    a) ¿Cuáles son los estados posibles de un Thread durante su tiempo de vida?
+
+    • New Thread ⭢ Estado de Creación: Cuando creo una instancia a partir de una Clase que EXTIENDE de Thread
+    o crear un Thread y pasarle por parámetro al constructor una instancia de una Clase que IMPLEMENTA Runnable.
+
+    • Running ⭢ Estado de Ejecución: Cuando a ese nuevo Thread le llama el método start().
+
+    • Not Running ⭢ Estado de Espera: Puede ser explícito, que por algún motivo lo paso a propósito a un estado de espera
+    o puede ser que el Sistema Operativo necesite darle un pedacito de tiempo a todos, lo saca del procesador para darle
+    la ejecución a otro, en tiempo de microsegundos hace la viceversa y así retoma desde donde estaba hasta.
+
+    • Dead ⭢ Estado Terminado: Termina la ejecución del método run().
+
+    b) Explique cuál es la alternativa para usar threads en una clase A que estamos definiendo, donde A hereda de
+    otra clase B.
+
+    Dado que no existe herencia múltiple en Java, la clase A no puede extender a la vez la clase Thread y B.
+    Entonces se utiliza la opción de implementar la Interface Runnable.
+
+Responda por Verdadero o Falso y justifique en cualquiera de los dos casos:
+    c) La inserción de un elemento en un Árbol Binario de Búsqueda Balanceado siempre tiene complejidad O(log n),
+    donde n es la cantidad de nodos en el árbol.
+
+    Verdadero! Ya que en cada caso  se compara el valor buscado con el nodo actual y se decide si ir a la rama
+    izquierda o derecha.
+
+    d) La inserción de un elemento en un Árbol Binario de Búsqueda Balanceado siempre tiene complejidad O(n),
+    donde n es la altura del árbol.
+
+    Falso! Ya que tiene siempre complejidad O(log n) siendo n la cantidad de nodos del árbol.
