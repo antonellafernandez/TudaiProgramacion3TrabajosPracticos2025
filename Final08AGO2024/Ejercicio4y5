@@ -1,0 +1,57 @@
+Ejercicio 4
+
+Responda:
+
+a) En las estructuras de hashing abierto separado:
+    i) Qué significado tiene el número pd (rho de diseño).
+
+        Factor de Carga ρ (o densidad de almacenamiento): Es la proporción de espacio utilizado respecto del espacio total
+        de almacenamiento asignado.
+
+        ρ (rho) = cantidad de datos / capacidad total de los baldes
+
+    ii) Explique qué impactos sobre la estructura y sobre su desempeño tendrán valores de pd chicos (ej. pd=0,1)
+    y grandes (ej. pd=3).
+
+        El valor que se elige para ρd mantiene un equilibrio entre longitud de listas de rebalse vs espacio que se desperdicia.
+
+        Un valor grande provocará que la estructura se llene demasiado y probablemente haya más colisiones y listas de rebalse
+        más largas.
+
+        Un valor muy bajo mantendrá baja la relación entre elementos en la estructura respecto al tamaño de la misma,
+        o sea un mayor desperdicio de espacio.
+
+b) Si se le pide diseñar una estructura de datos que usará el sistema de alumnos para guardar los datos de los alumnos de la
+facultad, donde habrá altas y bajas de alumnos y donde se sabe que la consulta más frecuente del sistema es emitir un reporte
+con todos los alumnos listados en orden de número de libreta universitaria de menor a mayor. ¿Qué estructura de datos elegiría?
+¿Cómo estaría organizada la información? Justifique.
+
+    Elegiría un Binary Search Tree balanceado donde cada Nodo contiene la clase Alumno y el método insertarOrdenado del BST
+    lo hace en base al número de libreta universitaria.
+
+    Como es frecuente el reporte ordenado, un árbol balanceado garantiza inserciones/bajas O(log n)
+    y recorrido in-order O(n) para obtener la lista ordenada.
+
+    Un TreeMap<Integer, Alumno> en Java sería una implementación directa de esto.
+
+Ejercicio 5
+
+a) ¿Cuál es la cantidad máxima de puntos de articulación que puede tener un grafo no dirigido conectado?. Justifique su
+respuesta.
+
+    El máximo absoluto es (n - 2) puntos de articulación ya que:
+
+    • Un punto de articulación debe estar conectado a, al menos, dos vértices distintos (grado ≥ 2).
+
+    • En cualquier grafo conectado, siempre hay al menos dos vértices que no cumplen con ser puntos de articulación
+    (ejemplo: extremos de un camino).
+
+b) Si se tuviera una función de hashing perfecto sobre una estructura de hashing con M baldes y rp=2 ¿Se estaría desperdiciando
+espacio en dicha estructura? Justifique su respuesta.
+
+    Hashing perfecto significa 0 colisiones, cada clave va a una ranura única.
+
+    El desperdicio va a depender de cuántos elementos tenga almacenados, si tengo una clave por balde y hay dos ranuras
+    primarias, la mitad de las ranuras no se usan, habría desperdicio ya que hay más ranuras de las necesarias.
+
+c) Resuelto en Ejercicio 5 Final 13MAR2025.
