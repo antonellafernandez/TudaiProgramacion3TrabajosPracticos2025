@@ -30,7 +30,7 @@ public class Ejercicio4 {
         // Ordenar las llaves por cantidad de cerraduras que abren desc
         Collections.sort(M, new ComparadorCantidadCerradurasDesc());
 
-        // Copiar el conjunto de llaves
+        // Mantener registro
         List<Llave> aux = new ArrayList<>(M);
 
         for (Cerradura c : N) {
