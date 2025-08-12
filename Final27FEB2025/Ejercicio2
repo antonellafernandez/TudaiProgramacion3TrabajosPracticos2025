@@ -1,0 +1,21 @@
+Ejercicio 2
+
+Cuál es la altura, la cantidad de hojas y la cantidad de nodos intrnos que podrá tener el árbol
+binario de búsqueda completo A, sabiendo que el siguiente algoritmo recursivo aplicado sobre
+el árbol A, al ser invocado como misterio(raiz), imprime el valor 6.
+
+public int misterio(Node node) {
+    if (node == null) {
+        return 0;
+    }
+
+    if (node.getleft() == null && node.getRight() == null) {
+        return 0;
+    }
+
+    return 1 + Math.max(misterio(node.getLeft()), misterio(node.getRight()));
+}
+
+El ABB tiene 7 niveles, es decir, HH = 6,
+                                  NN = 2^6 = 64
+                                  MM = 2^6 - 1 = 63 // Se resta la raíz
